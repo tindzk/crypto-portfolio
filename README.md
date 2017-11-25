@@ -11,12 +11,17 @@ calculate the equivalent amounts in fiat currencies.
 * Obtain conversation rates from CoinMarketCap
 
 ## Compilation
+This step requires [sbt](http://www.scala-sbt.org/download.html) to be
+installed on your machine. Alternatively, you can download the latest release
+[here](https://github.com/tindzk/crypto-portfolio/releases).
+
 The following command creates a self-contained JAR file that includes all dependencies:
 
 ```shell
 sbt assembly
 ```
 
+## Usage
 Copy the sample configuration from `wallets.sample.toml` to `wallets.toml` and
 set the public addresses of your wallets.
 
