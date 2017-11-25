@@ -1,0 +1,24 @@
+# Fiat currencies
+currencies = ["EUR", "USD"]
+
+# The addresses below were randomly chosen from public blockchain websites
+[[wallet]]
+currency = "ethereum"
+address  = "0x7A21B7B6Cf610eA0BFBcBf71A7c90723D2c20d68"
+
+[[wallet]]
+currency = "ethereum-classic"
+address  = "0xcdc6446645861678293a60f8dce924625724e39e"
+
+[[wallet]]
+currency = "bitcoin"
+address  = "1AmnfPQiALCCTJf2WPinJWc62YFLPe7Tyx"
+
+[[wallet]]
+currency = "bitshares"
+address  = "traderbot1"
+
+#[coinbase]
+#apiKey    = ""
+#apiSecret = ""
+#wallets   = ["BTC Wallet"]
