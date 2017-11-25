@@ -8,18 +8,13 @@ import toml.Codecs._
 object Config {
   implicit val currencyCodec: Codec[Currency] = Codec {
     case (Value.Str(value), _) =>
-      val currency = value match {
-        case "ethereum"         | "ETH" => Some(Ethereum)
-        case "ethereum-classic" | "ETC" => Some(EthereumClassic)
-        case "bitcoin"          | "BTC" => Some(Bitcoin)
-        case "bitshares"        | "BTS" => Some(Bitshares)
-        case "litecoin"         | "LTC" => Some(Litecoin)
-        case _ => None
-      }
-
-      currency match {
-        case None => Left((List.empty, s"Invalid currency: $value"))
-        case Some(c) => Right(c)
+      value match {
+        case "ethereum"         | "ETH" => Right(Ethereum)
+        case "ethereum-classic" | "ETC" => Right(EthereumClassic)
+        case "bitcoin"          | "BTC" => Right(Bitcoin)
+        case "bitshares"        | "BTS" => Right(Bitshares)
+        case "litecoin"         | "LTC" => Right(Litecoin)
+        case _ => Left((List.empty, s"Invalid currency: $value"))
       }
 
     case (value, _) => Left((List.empty, s"Currency expected, $value provided"))
