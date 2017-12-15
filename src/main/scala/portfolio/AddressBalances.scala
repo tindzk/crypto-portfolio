@@ -8,8 +8,7 @@ import io.circe.syntax._
 import scalaj.http.Http
 
 object AddressBalances {
-  case class EtherchainDatum(address: String, balance: Long)
-  case class Etherchain(data: List[EtherchainDatum])
+  case class Etherscan(result: Long)
   case class GasTrackerBalance(ether: Double)
   case class GasTracker(balance: GasTrackerBalance)
   case class CryptoFreshBTS(balance: Double)
@@ -18,8 +17,8 @@ object AddressBalances {
   def fetchBalance(wallet: AddressWallet): Double =
     wallet match {
       case AddressWallet(Ethereum, address) =>
-        val contents = Http(s"https://etherchain.org/api/account/$address").asString
-        decode[Etherchain](contents.body).right.get.data.head.balance.toDouble / 1000000000000000000L
+        val contents = Http(s"https://api.etherscan.io/api?module=account&action=balance&address=$address&tag=latest").asString
+        decode[Etherscan](contents.body).right.get.result.toDouble / 1000000000000000000L
 
       case AddressWallet(EthereumClassic, address) =>
         val contents = Http(s"https://api.gastracker.io/addr/$address").asString
