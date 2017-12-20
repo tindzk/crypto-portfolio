@@ -12,6 +12,7 @@ object Config {
         case "ethereum"         | "ETH" => Right(Ethereum)
         case "ethereum-classic" | "ETC" => Right(EthereumClassic)
         case "bitcoin"          | "BTC" => Right(Bitcoin)
+        case "bitcoin-cash"     | "BCH" => Right(BitcoinCash)
         case "bitshares"        | "BTS" => Right(Bitshares)
         case "litecoin"         | "LTC" => Right(Litecoin)
         case _ => Left((List.empty, s"Invalid currency: $value"))

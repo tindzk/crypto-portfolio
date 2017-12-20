@@ -51,6 +51,7 @@ object CoinbaseApi {
       .map { d =>
         val c = d.balance.currency match {
           case "BTC" => Bitcoin
+          case "BCH" => BitcoinCash
           case "LTC" => Litecoin
           case "ETH" => Ethereum
         }
