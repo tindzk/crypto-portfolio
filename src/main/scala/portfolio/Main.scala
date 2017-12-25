@@ -6,30 +6,38 @@ object Main extends App {
   def load(fiatCurrencies: List[String],
            wallets       : List[Wallet],
            coinbaseAuth  : Option[(String, String)]): Unit = {
-    println(s"Found ${wallets.length} wallets")
+    val tokens =
+      wallets.collect { case a: AddressWallet => a.tokens.length }.sum
+
+    println(s"Found ${wallets.length} wallets, $tokens tokens")
 
     val cbBalances = coinbaseAuth.map { case (apiKey, apiSecret) =>
       println("Fetching Coinbase balances...")
       CoinbaseApi.fetchBalances(apiKey, apiSecret)
     }
 
-    val currencies = wallets.map {
-      case a: AddressWallet  => a.currency.symbol
-      case c: CoinbaseWallet => cbBalances.get(c.name)._1.symbol
+    val currencies = wallets.flatMap {
+      case a: AddressWallet  => List(a.currency.symbol) ++ a.tokens
+      case c: CoinbaseWallet => List(cbBalances.get(c.name)._1.symbol)
     }
 
     println("Fetching conversion rates...")
     val coinPrices = CoinPrices.fetch(currencies.toSet, fiatCurrencies.toSet)
 
-    val balances = wallets.map {
+    val balances = wallets.flatMap {
       case a: AddressWallet =>
         println(s"Fetching balance for ${a.currency} wallet...")
-        AddressBalances.fetchBalance(a)
+        val wallet = AddressBalances.fetchBalance(a)
+        List(wallet.balance) ++ a.tokens.map(t =>
+          wallet.tokens
+            .collectFirst { case tk if tk.name == t => tk.balance }
+            .getOrElse(0.0)
+        )
 
       case c: CoinbaseWallet =>
         cbBalances match {
-          case None     => 0.0
-          case Some(cb) => cb(c.name)._2
+          case None     => List.empty
+          case Some(cb) => List(cb(c.name)._2)
         }
     }
 

@@ -7,6 +7,7 @@ calculate the equivalent amounts in fiat currencies.
 ## Features
 * Obtain balances of wallets
     * By public address (ETH, ETC, BTC, BTS)
+    * Ethereum tokens
     * From Coinbase
 * Obtain conversation rates from CoinMarketCap
 

@@ -20,8 +20,8 @@ object CoinPrices {
 
   def fetch(coins: Set[String], currencies: Set[String]): CoinPrices = {
     // TODO Consider all `currencies`
-    // Assume that the coins are among the top 50
-    val contents = Http(s"https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=50").asString
+    // Assume that the coins are among the top 400
+    val contents = Http(s"https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=400").asString
     decode[List[CoinMarketCapCoin]](contents.body).right.get.map { coin =>
       coin.symbol -> Map("EUR" -> coin.price_eur, "USD" -> coin.price_usd)
     }.toMap

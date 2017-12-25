@@ -9,5 +9,8 @@ case object Litecoin        extends Currency("LTC")
 case object Bitshares       extends Currency("BTS")
 
 sealed trait Wallet
-case class AddressWallet(currency: Currency, address: String) extends Wallet
+case class AddressWallet(currency: Currency,
+                         address: String,
+                         tokens: List[String] = List.empty
+                        ) extends Wallet
 case class CoinbaseWallet(name: String) extends Wallet

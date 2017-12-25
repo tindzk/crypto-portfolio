@@ -5,6 +5,7 @@ currencies = ["EUR", "USD"]
 [[wallet]]
 currency = "ethereum"
 address  = "0x7A21B7B6Cf610eA0BFBcBf71A7c90723D2c20d68"
+tokens   = ["ADX, ACC"]
 
 [[wallet]]
 currency = "ethereum-classic"
