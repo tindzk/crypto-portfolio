@@ -1,4 +1,4 @@
-val Toml    = "0.1.0"
+val Toml    = "0.1.1"
 val Circe   = "0.8.0"
 val ScalaJ  = "2.3.0"
 val Commons = "1.11"
