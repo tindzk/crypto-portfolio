@@ -1,6 +1,5 @@
 # Crypto Portfolio
-This application allows you to obtain the balances of your crypto wallets and
-calculate the equivalent amounts in fiat currencies.
+This application allows you to obtain the balances of your crypto wallets and calculate the equivalent amounts in fiat currencies.
 
 [![asciicast](https://asciinema.org/a/fxSD6mvLHgorN6DC7ZIJeJBvN.png)](https://asciinema.org/a/fxSD6mvLHgorN6DC7ZIJeJBvN)
 
@@ -10,25 +9,24 @@ calculate the equivalent amounts in fiat currencies.
     * Ethereum tokens
     * From Coinbase
 * Obtain conversation rates from CoinMarketCap
+* Calculate balances in fiat currencies
 
-## Compilation
-This step requires [sbt](http://www.scala-sbt.org/download.html) to be
-installed on your machine. Alternatively, you can download the latest release
-[here](https://github.com/tindzk/crypto-portfolio/releases).
+## Installation
+The only system dependency is the [Java Runtime Environment (JRE)](https://www.java.com/en/download/).
 
-The following command creates a self-contained JAR file that includes all dependencies:
+Download the program and the sample configuration:
 
 ```shell
-sbt assembly
+wget https://github.com/tindzk/crypto-portfolio/releases/download/v0.1/portfolio.jar
+wget https://raw.githubusercontent.com/tindzk/crypto-portfolio/v0.1/wallets.sample.toml -O wallets.toml
 ```
 
-## Usage
-Copy the sample configuration from `wallets.sample.toml` to `wallets.toml` and
-set the public addresses of your wallets.
+Configure Crypto Portfolio by setting the public addresses of your wallets in `wallets.toml`.
 
+## Usage
 Run the program as follows:
 
-```bash
+```shell
 java -jar portfolio.jar
 ```
 
@@ -36,6 +34,18 @@ java -jar portfolio.jar
 If you would like to support this project, donations are appreciated:
 
 * BTS: crypto-portfolio
+
+## Compilation
+To compile Crypto Portfolio from the sources, you need to have [sbt](http://www.scala-sbt.org/download.html) installed.
+
+The following command will create a self-contained JAR file that includes all dependencies:
+
+```shell
+sbt assembly
+```
+
+## Disclaimer
+Crypto Portfolio uses public APIs to check the balance of your currencies and tokens. It does not have any access to your private keys.
 
 ## Licence
 Crypto Portfolio is licensed under the terms of the Apache v2.0 licence.
