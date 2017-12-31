@@ -17,8 +17,8 @@ The only system dependency is the [Java Runtime Environment (JRE)](https://www.j
 Download the program and the sample configuration:
 
 ```shell
-wget https://github.com/tindzk/crypto-portfolio/releases/download/v0.1/portfolio.jar
-wget https://raw.githubusercontent.com/tindzk/crypto-portfolio/v0.1/wallets.sample.toml -O wallets.toml
+wget https://github.com/tindzk/crypto-portfolio/releases/download/v0.2/portfolio.jar
+wget https://raw.githubusercontent.com/tindzk/crypto-portfolio/v0.2/wallets.sample.toml -O wallets.toml
 ```
 
 Configure Crypto Portfolio by setting the public addresses of your wallets in `wallets.toml`.
