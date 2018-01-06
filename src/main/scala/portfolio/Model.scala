@@ -13,4 +13,4 @@ case class AddressWallet(currency: Currency,
                          address: String,
                          tokens: List[String] = List.empty
                         ) extends Wallet
-case class CoinbaseWallet(name: String) extends Wallet
+case class CoinbaseWallet(walletNames: List[String]) extends Wallet

@@ -16,6 +16,8 @@ import scalaj.http.Http
 object CoinbaseApi {
   val ApiVersion = "2017-11-24"
 
+  type Balances = Map[String, (Currency, Double)]
+
   case class Balance(amount: Double, currency: String)
   case class Datum(name: String, balance: Balance)
   case class Response(data: List[Datum])
@@ -31,7 +33,7 @@ object CoinbaseApi {
   }
 
   /** @return wallet name -> (currency, amount) */
-  def fetchBalances(apiKey: String, apiSecret: String): Map[String, (Currency, Double)] = {
+  def fetchBalances(apiKey: String, apiSecret: String): Balances = {
     val timestamp   = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())
     val method      = "GET"
     val requestPath = "/v2/accounts"
